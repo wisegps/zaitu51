@@ -13,7 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.wise.zaitu1.R;
+import com.wise.zaitu.R;
 
 import android.content.Context;
 import android.graphics.Bitmap;

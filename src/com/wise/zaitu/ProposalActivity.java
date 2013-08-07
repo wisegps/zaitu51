@@ -1,4 +1,4 @@
-package com.wise.zaitu1;
+package com.wise.zaitu;
 
 import com.BaseClass.Config;
 import com.BaseClass.WebService;

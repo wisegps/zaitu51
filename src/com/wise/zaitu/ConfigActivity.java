@@ -1,4 +1,4 @@
-package com.wise.zaitu1;
+package com.wise.zaitu;
 
 import android.app.Activity;
 import android.content.Context;

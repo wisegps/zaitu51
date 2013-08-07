@@ -12,7 +12,7 @@ import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapView;
 import com.google.android.maps.OverlayItem;
 import com.google.android.maps.Projection;
-import com.wise.zaitu1.AVTActivity;
+import com.wise.zaitu.AVTActivity;
 
 public class CarLocationOverlay extends ItemizedOverlay<OverlayItem> {
 	ArrayList<OverlayItem> mapOverLays = new ArrayList<OverlayItem>();

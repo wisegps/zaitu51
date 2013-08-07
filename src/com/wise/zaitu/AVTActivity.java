@@ -1,4 +1,4 @@
-package com.wise.zaitu1;
+package com.wise.zaitu;
 
 import java.util.ArrayList;
 import java.util.List;

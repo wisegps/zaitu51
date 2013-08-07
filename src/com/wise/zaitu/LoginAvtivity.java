@@ -1,4 +1,4 @@
-package com.wise.zaitu1;
+package com.wise.zaitu;
 
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;

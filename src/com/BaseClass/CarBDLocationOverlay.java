@@ -12,7 +12,7 @@ import com.baidu.mapapi.ItemizedOverlay;
 import com.baidu.mapapi.MapView;
 import com.baidu.mapapi.OverlayItem;
 import com.baidu.mapapi.Projection;
-import com.wise.zaitu1.AVTBDActivity;
+import com.wise.zaitu.AVTBDActivity;
 
 public class CarBDLocationOverlay extends ItemizedOverlay<OverlayItem> {
 	ArrayList<OverlayItem> mapOverLays = new ArrayList<OverlayItem>();

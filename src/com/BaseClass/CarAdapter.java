@@ -2,7 +2,7 @@ package com.BaseClass;
 
 import java.util.List;
 import com.wise.util.CarInfo;
-import com.wise.zaitu1.R;
+import com.wise.zaitu.R;
 
 import android.content.Context;
 import android.graphics.Bitmap;
