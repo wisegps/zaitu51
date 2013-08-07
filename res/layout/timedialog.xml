@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/locus_dialog_start" />
+    <RelativeLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <EditText android:enabled="false" android:id="@+id/et_start" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@+id/iv_start" />
+        <ImageView android:id="@+id/iv_start" android:layout_width="40.0dip" android:layout_height="40.0dip" android:src="@drawable/time" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    </RelativeLayout>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/locus_dialog_stop" />
+    <RelativeLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <EditText android:enabled="false" android:id="@+id/et_stop" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@+id/iv_stop" />
+        <ImageView android:id="@+id/iv_stop" android:layout_width="40.0dip" android:layout_height="40.0dip" android:src="@drawable/time" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    </RelativeLayout>
+</LinearLayout>

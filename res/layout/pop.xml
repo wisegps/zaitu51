@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/bubble_background" android:paddingLeft="10.0px" android:paddingTop="10.0px" android:paddingRight="10.0px" android:paddingBottom="25.0px" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="16.0dip" android:textColor="#ff000000" android:ellipsize="marquee" android:id="@+id/pop_car_id" android:layout_width="fill_parent" android:layout_height="wrap_content" android:singleLine="true" />
+    <TextView android:id="@+id/my_line" android:background="@drawable/repeat_bg" android:layout_width="fill_parent" android:layout_height="1.0px" />
+    <TextView android:textSize="16.0dip" android:textColor="#ff000000" android:ellipsize="marquee" android:id="@+id/pop_car_GpsTime" android:layout_width="fill_parent" android:layout_height="wrap_content" android:singleLine="true" />
+    <TextView android:textSize="16.0dip" android:textColor="#ff000000" android:ellipsize="marquee" android:id="@+id/pop_car_MSTStatus" android:layout_width="fill_parent" android:layout_height="wrap_content" android:singleLine="true" />
+    <TextView android:textSize="16.0dip" android:textColor="#ff000000" android:ellipsize="marquee" android:id="@+id/pop_car_Speed" android:layout_width="fill_parent" android:layout_height="wrap_content" android:singleLine="true" />
+    <TextView android:textSize="16.0dip" android:textColor="#ff000000" android:ellipsize="marquee" android:id="@+id/pop_car_Mileage" android:layout_width="fill_parent" android:layout_height="wrap_content" android:singleLine="true"/>
+    <TextView android:textSize="16.0dip" android:textColor="#ff000000" android:ellipsize="marquee" android:id="@+id/pop_car_staticTime" android:layout_width="fill_parent" android:layout_height="wrap_content" android:singleLine="true"/>
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textSize="18.0dip" android:textColor="#ff0000ff" android:id="@+id/bt_menu_car" android:background="@android:color/transparent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/monitor_car" />
+        <TextView android:textSize="18.0dip" android:textColor="#ff0000ff" android:gravity="center_horizontal" android:id="@+id/bt_monitor_locus" android:background="@android:color/transparent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="@string/monitor_locus" />
+    </LinearLayout>
+</LinearLayout>

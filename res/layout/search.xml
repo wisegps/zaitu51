@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@+id/rl_search" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <AutoCompleteTextView android:id="@+id/et_ListSearch" android:paddingRight="40.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="4.0dip" android:singleLine="true" />
+        <ImageView android:id="@+id/iv_ListClear" android:padding="10.0dip" android:visibility="gone" android:layout_width="40.0dip" android:layout_height="40.0dip" android:src="@drawable/delete" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:contentDescription="@string/PicNote" />
+    </RelativeLayout>
+    <ListView android:id="@+id/lv_car" android:layout_width="fill_parent" android:layout_height="fill_parent" android:cacheColorHint="#ffffffff" android:divider="@drawable/drivider" android:layout_above="@+id/tv_SearchStatistic" android:layout_below="@+id/rl_search" />
+    <TextView android:textSize="15.0dip" android:textColor="#ffffffff" android:id="@+id/tv_SearchStatistic" android:background="@drawable/bg_address" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" />
+    <ImageView android:id="@+id/iv_Map" android:layout_width="30.0dip" android:layout_height="30.0dip" android:src="@drawable/trun_right" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:contentDescription="@string/PicNote" />
+</RelativeLayout>

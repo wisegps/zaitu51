@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="alarm">
+        <item>剪线报警</item>
+        <item>GPS断线报警</item>
+        <item>超速报警</item>
+        <item>低电压报警</item>
+        <item>超时停车报警</item>
+        <item>Sensor 1 On</item>
+        <item>Sensor 2 On</item>
+        <item>Sensor 3 On</item>
+        <item>锁车状态</item>
+    </string-array>
+</resources>

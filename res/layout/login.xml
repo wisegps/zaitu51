@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textColor="#ff000000" android:id="@+id/UserName_TV" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/user_name_tv" />
+    <EditText android:textSize="18.0sp" android:id="@+id/UserName_ET" android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="none" />
+    <TextView android:textColor="#ff000000" android:id="@+id/PassWord_TV" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/PassWord_tv" />
+    <EditText android:textSize="18.0sp" android:id="@+id/PassWord_ET" android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="textPassword" />
+    <CheckBox android:textColor="#ff000000" android:id="@+id/NotePsw" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/check_pwd" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <Button android:id="@+id/bt_login" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@android:string/ok" android:layout_weight="1.0" />
+        <Button android:id="@+id/bt_cancle" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@android:string/cancel" android:layout_weight="1.0" />
+    </LinearLayout>
+    <TextView android:textColor="#ffff0000" android:gravity="center_horizontal" android:id="@+id/tv_update" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="25.0dip" android:text="@string/tv_check_update" />
+</LinearLayout>

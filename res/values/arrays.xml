@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="alarm">
+        <item>SOS</item>
+        <item>GPS Cut</item>
+        <item>Over Speed</item>
+        <item>Battery Low</item>
+        <item>Over Idle</item>
+        <item>Sensor 1 On</item>
+        <item>Sensor 2 On</item>
+        <item>Sensor 3 On</item>
+        <item>Engine Stop</item>
+    </string-array>
+</resources>

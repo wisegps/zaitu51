@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.baidu.mapapi.MapView android:id="@+id/bd_MapView" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <RelativeLayout android:id="@+id/bd_rl_search" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@+id/bd_iv_Me">
+            <AutoCompleteTextView android:id="@+id/bd_et_MapSearch" android:paddingRight="40.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="4.0dip" android:singleLine="true" />
+            <ImageView android:id="@+id/bd_iv_MapClear" android:padding="10.0dip" android:visibility="gone" android:layout_width="40.0dip" android:layout_height="40.0dip" android:src="@drawable/delete" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:contentDescription="@string/PicNote" />
+        </RelativeLayout>
+        <ImageView android:id="@+id/bd_iv_Me" android:layout_width="40.0dip" android:layout_height="40.0dip" android:src="@drawable/myplaces" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:contentDescription="@string/PicNote" />
+    </RelativeLayout>
+    <ImageView android:id="@+id/bd_iv_Search" android:layout_width="30.0dip" android:layout_height="30.0dip" android:src="@drawable/trun_left" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:contentDescription="@string/PicNote" />
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@+id/bd_rl_search">
+        <TextView android:textSize="15.0dip" android:textColor="#ffffffff" android:gravity="center_vertical" android:id="@+id/bd_tv_address" android:background="@drawable/bg_address" android:paddingLeft="5.0dip" android:paddingRight="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5.0dip" android:text="@string/Location" android:layout_toLeftOf="@+id/bd_tv_map_change" android:layout_alignParentLeft="true" />
+        <TextView android:textSize="15.0dip" android:textColor="#ff000000" android:id="@+id/bd_tv_map_change" android:background="#ffffffff" android:paddingLeft="5.0dip" android:paddingRight="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="1.0dip" android:layout_marginRight="5.0dip" android:text="@string/Satellite" android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <Button android:id="@+id/bd_bt_ZoomDown" android:background="@drawable/bt_bg_down" android:layout_width="50.0dip" android:layout_height="40.0dip" android:layout_toLeftOf="@+id/bd_bt_ZoomUp" android:layout_above="@+id/bd_tv_statistic" />
+    <Button android:id="@+id/bd_bt_ZoomUp" android:background="@drawable/bt_bg_up" android:layout_width="50.0dip" android:layout_height="40.0dip" android:layout_marginRight="5.0dip" android:layout_above="@+id/bd_tv_statistic" android:layout_alignParentRight="true" />
+    <TextView android:textSize="15.0dip" android:textColor="#ffffffff" android:id="@+id/bd_tv_statistic" android:background="@drawable/bg_address" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:layout_above="@+id/bd_ll_addview" />
+    <LinearLayout android:id="@id/bd_ll_addview" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:orientation="vertical" />
+    <LinearLayout android:orientation="vertical" android:id="@+id/bd_Layout_bar" android:background="@android:color/background_dark" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <ImageView android:id="@+id/bd_iv_play" android:layout_width="40.0dip" android:layout_height="40.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/play" android:contentDescription="@string/PicNote" />
+            <ImageView android:id="@+id/bd_iv_pause" android:layout_width="40.0dip" android:layout_height="40.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/pause" android:contentDescription="@string/PicNote" />
+            <ImageView android:id="@+id/bd_iv_stop" android:layout_width="40.0dip" android:layout_height="40.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/stop" android:contentDescription="@string/PicNote" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/locas_speed" />
+            <SeekBar android:id="@+id/bd_sb_speed" android:paddingLeft="10.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:max="100" />
+        </LinearLayout>
+        <ProgressBar android:id="@+id/bd_show_bar" android:layout_width="fill_parent" android:layout_height="wrap_content" style="?android:attr/progressBarStyleHorizontal" />
+    </LinearLayout>
+</RelativeLayout>

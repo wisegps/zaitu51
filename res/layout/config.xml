@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/bground" android:paddingLeft="10.0dip" android:paddingTop="10.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textColor="#ff000000" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/change_map" />
+        <RadioGroup android:gravity="left" android:orientation="horizontal" android:id="@+id/RadioGroup01" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <RadioButton android:textColor="#ff000000" android:id="@+id/RadioButton01" android:layout_width="150.0dip" android:layout_height="wrap_content" android:button="@drawable/checkbox" android:text="@string/RadioButton01" />
+            <RadioButton android:textColor="#ff000000" android:id="@+id/RadioButton02" android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@drawable/checkbox" android:text="@string/RadioButton02" />
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textColor="#ff000000" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/is_ref" />
+        <RadioGroup android:gravity="left" android:orientation="horizontal" android:id="@+id/RadioGroup02" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <RadioButton android:textColor="#ff000000" android:id="@+id/RadioButton03" android:layout_width="150.0dip" android:layout_height="wrap_content" android:button="@drawable/checkbox" android:text="@string/is_ref_yes" />
+            <RadioButton android:textColor="#ff000000" android:id="@+id/RadioButton04" android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@drawable/checkbox" android:text="@string/is_ref_no" />
+        </RadioGroup>
+    </LinearLayout>
+    <TextView android:textColor="#ff000000" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/config_update_time" />
+    <EditText android:textColor="#ff000000" android:id="@+id/ET_config_update_time" android:background="@drawable/spinner_text_style" android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="number" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <Button android:textColor="#ff000000" android:id="@+id/BT_config_update_ok" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@android:string/ok" android:layout_weight="1.0" />
+        <Button android:textColor="#ff000000" android:id="@+id/BT_config_update_cancle" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@android:string/cancel" android:layout_weight="1.0" />
+    </LinearLayout>
+</LinearLayout>
