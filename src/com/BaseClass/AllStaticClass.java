@@ -74,7 +74,7 @@ public class AllStaticClass {
 		}
 		
 	}
-	public static BitmapDrawable DrawableBimpMap(Context context ,String GPSFlag , String Alarm,String Rotate,String BoardTime){
+	public static BitmapDrawable DrawableBimpMap(Context context ,String GPSFlag , String Alarm,String Rotate,String BoardTime,boolean isNeedOff){
 		Bitmap car_alert = BitmapFactory.decodeResource(context.getResources(),R.drawable.car_alert);
 		Bitmap car_bad = BitmapFactory.decodeResource(context.getResources(),R.drawable.car_bad);
 		Bitmap car_off = BitmapFactory.decodeResource(context.getResources(),R.drawable.car_off);
@@ -84,9 +84,12 @@ public class AllStaticClass {
 		String[] alarm = context.getResources().getStringArray(R.array.alarm);
 		int gpsFlag = Integer.valueOf(GPSFlag);
 		int rotate = Integer.valueOf(Rotate);
-		if(GetTimeDiff(BoardTime) > 10){
-			return DrawableBimp(rotate, car_out);
-		}else if (gpsFlag%2 != 0) {
+		if(isNeedOff){
+			if(GetTimeDiff(BoardTime) > 10){
+				return DrawableBimp(rotate, car_out);
+			}
+		}
+		if (gpsFlag%2 != 0) {
 			return DrawableBimp(rotate, car_bad);
 		}else if(SearchAlarm(Alarm, alarm)){
 			return DrawableBimp(rotate, car_alert);

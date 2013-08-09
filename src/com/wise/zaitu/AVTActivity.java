@@ -554,7 +554,7 @@ public class AVTActivity extends MapActivity implements OnGestureListener{
 		String GPSFlag = carPath.get(index).getGPSFlag();
 		String MSTStatus = carPath.get(index).getCar_status();
 		String Direct = carPath.get(index).getDirect();
-		Drawable drawable = AllStaticClass.DrawableBimpMap(AVTActivity.this, GPSFlag, MSTStatus, Direct,carPath.get(index).getBoardTime());
+		Drawable drawable = AllStaticClass.DrawableBimpMap(AVTActivity.this, GPSFlag, MSTStatus, Direct,carPath.get(index).getBoardTime(),false);
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		LocusOverlay itemOverLay = new LocusOverlay(drawable); // 实例化画图
 		OverlayItem overLayItem = new OverlayItem(stopPoint, "123","123"); // 绑定点击事件
@@ -686,7 +686,7 @@ public class AVTActivity extends MapActivity implements OnGestureListener{
 			String snippet = RegNum + ",," + gps_time + ",," + MSTStatus + ",," + Speed + "km/h" + ",," + Mileage + "km,," + Fuel + ",," + Temp + ",," + carinfos.get(i).getStaticTime();
 			
 			GeoPoint Point = new GeoPoint(AllStaticClass.StringToInt(Lat), AllStaticClass.StringToInt(Lon)); // 得到经纬度
-			Drawable drawable = AllStaticClass.DrawableBimpMap(AVTActivity.this, GPSFlag, MSTStatus, Direct,carinfos.get(i).getBoardTime());
+			Drawable drawable = AllStaticClass.DrawableBimpMap(AVTActivity.this, GPSFlag, MSTStatus, Direct,carinfos.get(i).getBoardTime(),true);
 			int w = drawable.getIntrinsicWidth();
 			int h = drawable.getIntrinsicHeight();
 			drawable.setBounds(-w/2, -h/2, w/2, h/2);

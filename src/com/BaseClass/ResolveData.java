@@ -206,20 +206,16 @@ public class ResolveData {
 			}else{
 				carInfo.setGPSFlag(gpsFlag);
 			}
+			
+			String BoardTime = strCars[1].substring(10);
+			if (BoardTime.equals("anyType{}")) {
+				carInfo.setBoardTime("");
+			} else {
+				carInfo.setBoardTime(BoardTime.replace("T", " "));
+			}
 			carPath.add(carInfo);
 			System.out.println(carInfo.toString());
 		}
 		return carPath;
 	}
 }
-
-
-//GetGPSCountsResponse{GetGPSCountsResult=anyType{AccOn=56; 
-//AccOff=9; 
-//Sensor1=1; 
-//Sensor2=0; 
-//Sos=0; 
-//BadGps=8; 
-//InActive=26; 
-//Alert=7; 
-//Total=65; }; }

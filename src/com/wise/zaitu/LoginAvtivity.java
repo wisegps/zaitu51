@@ -12,19 +12,24 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginAvtivity extends Activity{
-	/*常量*/ 
+	private final String TAG = "LoginAvtivity"; 
 	public final int Login = 3; //登陆成功
 	
 	/* 控件定义 */
@@ -33,7 +38,7 @@ public class LoginAvtivity extends Activity{
 	CheckBox cb_isSavePwd; // 是否保存密码
 	Button bt_login; // 登陆
 	Button bt_exit; // 离开
-	
+	TextView tv_update;
 	/*全局变量*/
 	ProgressDialog Dialog = null;    //progress
 	String strGroupCode = null;      //用户组
@@ -41,10 +46,11 @@ public class LoginAvtivity extends Activity{
 	String LoginName ;               //用户名
 	String LoginPws ;                //密码
 	String url;                      //
-	String selectVip ;               //vip等级      
-	int timeout = 30000;             //超时设置
-	boolean LoginNote;               //是否保存密码
+	boolean LoginNote = true;               //是否保存密码
 	boolean Map; //选择地图
+	double Verson; 	  //版本号，用户判断更新
+	String VersonUrl; //下载路径
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -138,6 +144,8 @@ public class LoginAvtivity extends Activity{
 		String LoginPws = preferences.getString("LoginPws", "");
 		LoginNote = preferences.getBoolean("LoginNote", true);
 		Map = preferences.getBoolean("Map", true);
+		Verson = Double.valueOf(preferences.getString("Verson", "0"));
+		VersonUrl = preferences.getString("VersonUrl", "");
 		et_name.setText(LoginName);
 		et_pwd.setText(LoginPws);
 		cb_isSavePwd.setChecked(LoginNote);
@@ -163,6 +171,7 @@ public class LoginAvtivity extends Activity{
 		bt_login.setOnClickListener(OCL);
 		bt_exit = (Button) findViewById(R.id.bt_cancle);
 		bt_exit.setOnClickListener(OCL);
+		tv_update = (TextView)findViewById(R.id.tv_update);
 	}
 	
 	
@@ -218,5 +227,35 @@ public class LoginAvtivity extends Activity{
 			 editor.commit();
 	    	 return;
 	     }
+	}
+	private void isUpdate(){
+		if(isSdCardExist()){
+			try {
+				Log.d(TAG, "Verson:" + Verson + ",VersonUrl:" + VersonUrl);
+				//得到系统的版本
+				if(Verson>Double.valueOf(GetVersion(getApplicationContext(), Config.MyPackage))){
+					tv_update.setVisibility(View.VISIBLE);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			//String url = Config.URL + Config.UpdateUrl;
+			//new Thread(new NetThread.GetDataThread(handler, url, Update)).start();
+		}else{
+			Toast.makeText(LoginAvtivity.this, R.string.SD_NOTFIND, Toast.LENGTH_LONG).show();
+		}
+	}
+	private boolean isSdCardExist(){
+		return android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
+	}
+	public String GetVersion(Context context,String packString) {
+		PackageManager pm = context.getPackageManager();
+		try {
+			PackageInfo pi = pm.getPackageInfo(packString, 0);
+			return pi.versionName;
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

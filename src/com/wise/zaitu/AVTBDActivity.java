@@ -18,7 +18,6 @@ import com.BaseClass.PoiBDOverlay;
 import com.BaseClass.ResolveData;
 import com.baidu.mapapi.BMapManager;
 import com.baidu.mapapi.GeoPoint;
-import com.baidu.mapapi.ItemizedOverlay;
 import com.baidu.mapapi.MapActivity;
 import com.baidu.mapapi.MapController;
 import com.baidu.mapapi.MapView;
@@ -343,7 +342,7 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 							carAdapter.notifyDataSetChanged();
 							//删除汽车标记
 							for(int i = 0 ; i < mapOverLays.size() ; i++){
-								if(mapOverLays.get(i).getClass().toString().indexOf("CarLocationOverlay")>0){
+								if(mapOverLays.get(i).getClass().toString().indexOf("CarBDLocationOverlay")>0){
 									mapOverLays.remove(i);
 									i--;
 								}
@@ -395,10 +394,12 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 				if (Dialog != null) {
 					Dialog.dismiss();
 				}
+				//TODO 轨迹回访
 				try {
-					String theLocus = (String) msg.obj;
+					String theLocus = msg.obj.toString();
 					//解析轨迹回访返回的数据carPath
 					carPath = ResolveData.locusParseXML(theLocus);
+					System.out.println("轨迹数目："+carPath.size());
 					locus();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -420,7 +421,7 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 				bd_iv_pause.setEnabled(true);
 				//删除轨迹移动图标
 				for(int j = 0 ; j < mapOverLays.size() ; j++){
-					if(mapOverLays.get(j).getClass().toString().indexOf("LocusOverlay")>0){
+					if(mapOverLays.get(j).getClass().toString().indexOf("LocusBDOverlay")>0){
 						mapOverLays.remove(j);
 						j--;
 					}
@@ -522,7 +523,7 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 			IsLock = true;
 			//删除车辆标记
 			for(int i = 0 ; i < mapOverLays.size() ; i++){
-				if(mapOverLays.get(i).getClass().toString().indexOf("CarLocationOverlay")>0){
+				if(mapOverLays.get(i).getClass().toString().indexOf("CarBDLocationOverlay")>0){
 					mapOverLays.remove(i);
 					i--;
 				}
@@ -545,7 +546,7 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 	 */
 	private void LocusNow(int index){
 		for(int j = 0 ; j < mapOverLays.size() ; j++){
-			if(mapOverLays.get(j).getClass().toString().indexOf("LocusOverlay")>0){
+			if(mapOverLays.get(j).getClass().toString().indexOf("LocusBDOverlay")>0){
 				mapOverLays.remove(j);
 				j--;
 			}
@@ -555,7 +556,7 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 		String GPSFlag = carPath.get(index).getGPSFlag();
 		String MSTStatus = carPath.get(index).getCar_status();
 		String Direct = carPath.get(index).getDirect();
-		Drawable drawable = AllStaticClass.DrawableBimpMap(AVTBDActivity.this, GPSFlag, MSTStatus, Direct,carPath.get(index).getBoardTime());
+		Drawable drawable = AllStaticClass.DrawableBimpMap(AVTBDActivity.this, GPSFlag, MSTStatus, Direct,carPath.get(index).getBoardTime(),false);
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		LocusBDOverlay itemOverLay = new LocusBDOverlay(drawable); // 实例化画图
 		OverlayItem overLayItem = new OverlayItem(stopPoint, "123","123"); // 绑定点击事件
@@ -687,7 +688,7 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 			String snippet = RegNum + ",," + gps_time + ",," + MSTStatus + ",," + Speed + "km/h" + ",," + Mileage + "km,," + Fuel + ",," + Temp + ",," + carinfos.get(i).getStaticTime();
 			
 			GeoPoint Point = new GeoPoint(AllStaticClass.StringToInt(Lat), AllStaticClass.StringToInt(Lon)); // 得到经纬度
-			Drawable drawable = AllStaticClass.DrawableBimpMap(AVTBDActivity.this, GPSFlag, MSTStatus, Direct,carinfos.get(i).getBoardTime());
+			Drawable drawable = AllStaticClass.DrawableBimpMap(AVTBDActivity.this, GPSFlag, MSTStatus, Direct,carinfos.get(i).getBoardTime(),true);
 			int w = drawable.getIntrinsicWidth();
 			int h = drawable.getIntrinsicHeight();
 			drawable.setBounds(-w/2, -h/2, w/2, h/2);
@@ -812,7 +813,7 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 					System.gc();
 					//删除轨迹线
 					for(int i = 0 ; i < mapOverLays.size() ; i++){
-						if(mapOverLays.get(i).getClass().toString().indexOf("MyOverlay")>0){
+						if(mapOverLays.get(i).getClass().toString().indexOf("MyBDOverlay")>0){
 							mapOverLays.remove(i);
 							i--;
 						}
@@ -822,7 +823,7 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 					ISSEARCH = true;
 					//删除汽车标记
 					for(int i = 0 ; i < mapOverLays.size() ; i++){
-						if(mapOverLays.get(i).getClass().toString().indexOf("CarLocationOverlay")>0){
+						if(mapOverLays.get(i).getClass().toString().indexOf("CarBDLocationOverlay")>0){
 							mapOverLays.remove(i);
 							i--;
 						}
@@ -838,7 +839,7 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 				LocausDialog();
 				break;
 			//开始播放轨迹
-			case R.id.iv_play:
+			case R.id.bd_iv_play:
 				//播放按钮设为不可用
 				bd_iv_play.setEnabled(false);
 				if(PROGRESS == 0){
@@ -876,7 +877,7 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 	private void ChangeMap(){
 		//删除汽车标记
 		for(int i = 0 ; i < mapOverLays.size() ; i++){
-			if(mapOverLays.get(i).getClass().toString().indexOf("CarLocationOverlay")>0){
+			if(mapOverLays.get(i).getClass().toString().indexOf("CarBDLocationOverlay")>0){
 				mapOverLays.remove(i);
 				i--;
 			}
@@ -1062,7 +1063,7 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 			ISSEARCH = false;
 			//删除汽车标记
 			for(int i = 0 ; i < mapOverLays.size() ; i++){
-				if(mapOverLays.get(i).getClass().toString().indexOf("CarLocationOverlay")>0){
+				if(mapOverLays.get(i).getClass().toString().indexOf("CarBDLocationOverlay")>0){
 					mapOverLays.remove(i);
 					i--;
 				}
@@ -1101,7 +1102,7 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 			ISSEARCH = false;
 			//删除汽车标记
 			for(int i = 0 ; i < mapOverLays.size() ; i++){
-				if(mapOverLays.get(i).getClass().toString().indexOf("CarLocationOverlay")>0){
+				if(mapOverLays.get(i).getClass().toString().indexOf("CarBDLocationOverlay")>0){
 					mapOverLays.remove(i);
 					i--;
 				}
@@ -1112,14 +1113,14 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 			//停止轨迹回访
 			IsLock = false;
 			for(int i = 0 ; i < mapOverLays.size() ; i++){
-				if(mapOverLays.get(i).getClass().toString().indexOf("MyOverlay")>0){
+				if(mapOverLays.get(i).getClass().toString().indexOf("MyBDOverlay")>0){
 					mapOverLays.remove(i);
 					i--;
 				}
 			}
 			//删除轨迹回访跑的图标
 			for(int j = 0 ; j < mapOverLays.size() ; j++){
-				if(mapOverLays.get(j).getClass().toString().indexOf("LocusOverlay")>0){
+				if(mapOverLays.get(j).getClass().toString().indexOf("LocusBDOverlay")>0){
 					mapOverLays.remove(j);
 					j--;
 				}
@@ -1383,14 +1384,14 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
 				//停止轨迹回访
 				IsLock = false;
 				for(int i = 0 ; i < mapOverLays.size() ; i++){
-					if(mapOverLays.get(i).getClass().toString().indexOf("MyOverlay")>0){
+					if(mapOverLays.get(i).getClass().toString().indexOf("MyBDOverlay")>0){
 						mapOverLays.remove(i);
 						i--;
 					}
 				}
 				//删除轨迹回访跑的图标
 				for(int j = 0 ; j < mapOverLays.size() ; j++){
-					if(mapOverLays.get(j).getClass().toString().indexOf("LocusOverlay")>0){
+					if(mapOverLays.get(j).getClass().toString().indexOf("LocusBDOverlay")>0){
 						mapOverLays.remove(j);
 						j--;
 					}

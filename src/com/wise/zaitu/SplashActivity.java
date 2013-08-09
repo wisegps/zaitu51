@@ -10,9 +10,12 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SplashActivity extends Activity {
+	private static final String TAG = "SplashActivity";
 	static final int WAIT = 1;
 	static final int GetService = 2;
 	
@@ -47,9 +50,14 @@ public class SplashActivity extends Activity {
 				break;
 
 			case GetService:
-				is_getService = true;
-				jsonXml(msg.obj.toString());
-				TrunActivity();
+				if(msg.obj == null){
+					Toast.makeText(getApplicationContext(), "获取地址异常", Toast.LENGTH_SHORT).show();
+				}else{
+					is_getService = true;
+					Log.d(TAG, msg.obj.toString());
+					jsonXml(msg.obj.toString());
+					TrunActivity();
+				}				
 				break;
 			}
 		}
