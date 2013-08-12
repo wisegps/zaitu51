@@ -4,8 +4,11 @@
     <string name="languag">ZH</string>
     <string name="app_name">手机车辆监控系统</string>
     <string name="Hello_name">手机车辆监控系统</string>
+    
+    <!-- 启动页面 -->
+    <string name="get_service_url_wrong">获取服务地址失败</string>
+    
     <string name="copyright">Copyright by Tracknet Asia</string>
-    <string name="Google">google地图不可用,是否跳转到百度地图</string>
     <string name="Login_frist">读取服务器信息中,请稍后.</string>
     <string name="no_srevice">未选择服务器</string>
     <string name="PicNote">图片</string>

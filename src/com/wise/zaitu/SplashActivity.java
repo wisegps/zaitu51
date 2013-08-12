@@ -15,28 +15,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SplashActivity extends Activity {
-	private static final String TAG = "SplashActivity";
-	static final int WAIT = 1;
-	static final int GetService = 2;
 	
-	boolean is_wait = false;
-	boolean is_getService = false;
+	private static final String TAG = "SplashActivity";
+	private static final int WAIT = 1;
+	private static final int GET_SERVICE = 2;
+	
+	boolean is_wait = false;//等待3s
+	boolean is_getService = false;//得到访问地址
+	
 	String url = "";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
-		new Thread(new WaitThread()).start();
-		new Thread(new NetThread.GetSerListThread(handler, GetService,Config.strAppID)).start();
-		try {
-			PackageManager pm = getPackageManager();
-			PackageInfo pi = pm.getPackageInfo(Config.MyPackage, 0);
-			TextView versionNumber = (TextView) findViewById(R.id.versionNumber);
-			versionNumber.setText("Version " + pi.versionName);
-		} catch (NameNotFoundException e) {
-			e.printStackTrace();
-		}
+		Init();
 	}
 
 	Handler handler = new Handler() {
@@ -48,26 +41,46 @@ public class SplashActivity extends Activity {
 				is_wait = true;
 				TrunActivity();
 				break;
-
-			case GetService:
-				if(msg.obj == null){
-					Toast.makeText(getApplicationContext(), "获取地址异常", Toast.LENGTH_SHORT).show();
-				}else{
-					is_getService = true;
-					Log.d(TAG, msg.obj.toString());
-					jsonXml(msg.obj.toString());
-					TrunActivity();
-				}				
+			case GET_SERVICE:
+				try {
+					if(Config.ODG){
+						Log.d(TAG, msg.obj.toString());
+					}
+					url = jsonXml(msg.obj.toString());
+					if("".equals(url)){
+						Toast.makeText(getApplicationContext(), R.string.get_service_url_wrong, Toast.LENGTH_SHORT).show();
+					}else{
+						is_getService = true;
+						TrunActivity();	
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}			
 				break;
 			}
 		}
 	};
+	
+	private String jsonXml(String result) throws Exception{
+		String[] array = result.split("; ");
+		return array[1].substring(10);
+	}
+	
+	private void TrunActivity(){
+		if(is_wait && is_getService){
+			Intent intent = new Intent(SplashActivity.this,LoginAvtivity.class);
+			intent.putExtra("url", url);
+			startActivity(intent);
+			finish();
+		}		
+	}
+	
 	class WaitThread extends Thread{
 		@Override
 		public void run() {
 			super.run();
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -76,20 +89,17 @@ public class SplashActivity extends Activity {
 			handler.sendMessage(message);
 		}
 	}
-	private void jsonXml(String result){
+	
+	private void Init(){
+		TextView versionNumber = (TextView) findViewById(R.id.versionNumber);
+		new Thread(new WaitThread()).start();
+		new Thread(new NetThread.GetSerListThread(handler, GET_SERVICE,Config.strAppID)).start();
 		try {
-			String[] array = result.split("; ");
-			url = array[1].substring(10);
-		} catch (Exception e) {
+			PackageManager pm = getPackageManager();
+			PackageInfo pi = pm.getPackageInfo(Config.MyPackage, 0);
+			versionNumber.setText("Version " + pi.versionName);
+		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
-	}
-	private void TrunActivity(){
-		if(is_wait && is_getService){
-			Intent intent = new Intent(SplashActivity.this,LoginAvtivity.class);
-			intent.putExtra("url", url);
-			startActivity(intent);
-			SplashActivity.this.finish();
-		}		
 	}
 }

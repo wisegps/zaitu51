@@ -37,4 +37,8 @@ public class Config {
 	public static final String strAppName = "wiseavt";
 	public static final String url = "http://www.wiselbs.cn/wspub/service.asmx";
 	public static final String MyPackage = "com.wise.zaitu";
+	/**
+	 * 测试为true，正式发布为false
+	 */
+	public static final boolean ODG = true;
 }

@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
+<RelativeLayout 
     android:layout_width="fill_parent" 
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-  	xmlns:android="http://schemas.android.com/apk/res/android">
+  	xmlns:android="http://schemas.android.com/apk/res/android"
+  	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads">
     <ViewFlipper 
         android:id="@+id/viewFlipper" 
         android:layout_width="fill_parent" 
-        android:layout_height="fill_parent" />
-</LinearLayout>
+        android:layout_height="fill_parent" 
+        android:layout_above="@+id/adView"/>
+    <com.google.ads.AdView 
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        ads:adUnitId="a150dac0bc1eaf0"
+        ads:adSize="BANNER"
+        ads:testDevices="TEST_EMULATOR, TEST_DEVICE_ID"
+        ads:loadAdOnCreate="true"/>
+</RelativeLayout>

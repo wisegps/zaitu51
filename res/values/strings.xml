@@ -4,6 +4,10 @@
     <string name="languag">EN</string>
     <string name="app_name">Wise</string>
     <string name="Hello_name">Wise Vehicle Tracker</string>
+    
+    <!-- 启动页面 -->
+    <string name="get_service_url_wrong">Get service url error</string>
+    
     <string name="copyright">Copyright by Tracknet Asia</string>
     <string name="Google">google map cannot use</string>
     <string name="Login_frist">Getting server list, pls wait</string>

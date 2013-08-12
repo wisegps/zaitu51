@@ -23,6 +23,8 @@ import com.baidu.mapapi.MapController;
 import com.baidu.mapapi.MapView;
 import com.baidu.mapapi.Overlay;
 import com.baidu.mapapi.OverlayItem;
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 import com.wise.util.ArrayAdapter;
 import com.wise.util.CarInfo;
 import com.wise.util.TotalData;
@@ -168,6 +170,8 @@ public class AVTBDActivity extends MapActivity implements OnGestureListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        AdView adView = (AdView)this.findViewById(R.id.adView);
+        adView.loadAd(new AdRequest());
         //ÊÖÊÆ¿Ø¼þ
         gestureScanner = new GestureDetector(this);
 		flipper = (ViewFlipper) this.findViewById(R.id.viewFlipper);

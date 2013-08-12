@@ -29,8 +29,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginAvtivity extends Activity{
+	
 	private final String TAG = "LoginAvtivity"; 
-	public final int Login = 3; //登陆成功
+	private final int Login = 3; //登陆成功
 	
 	/* 控件定义 */
 	EditText et_name; // 用户名

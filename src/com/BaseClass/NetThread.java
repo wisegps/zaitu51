@@ -21,14 +21,15 @@ import android.util.Log;
 
 public class NetThread {
 	static int timeout = 20000;
+	
 	public static class GetSerListThread extends Thread{
 		Handler tHandler;
 		int tWhere;
 		String strAppID;
 		/**
-		 * 获取服务列表
+		 * 获取访问地址
 		 * @param handler Handler
-		 * @param Where   接受数据
+		 * @param Where
 		 */
 		public GetSerListThread(Handler handler,int Where,String strAppID){
 			tHandler = handler;
@@ -38,11 +39,10 @@ public class NetThread {
 		@Override
 		public void run() {
 			super.run();
-			String str = null;
+			String str = "";
 			try {
 				str = WebService.SoapGetServer(Config.url, Config.nameSpace, Config.methodGetSerList,strAppID, timeout);
 			} catch (Exception e) {
-				System.out.println("异常");
 				e.printStackTrace();
 			}finally{
 				Message msg = new Message();
