@@ -10,7 +10,7 @@ public class CarInfo implements Serializable {
 	private String GpsTime;
 	private String Lon;
 	private String Lat;
-	private String Speed;
+	private int Speed;
 	private String Mileage;
 	private String Direct;
 	private String RegNum;
@@ -61,12 +61,12 @@ public class CarInfo implements Serializable {
 	}
 	public void setLat(String lat) {
 		this.Lat = lat;
-	}
-	public String getSpeed() {
+	}		
+	public int getSpeed() {
 		return Speed;
 	}
-	public void setSpeed(String speed) {
-		this.Speed = speed;
+	public void setSpeed(int speed) {
+		Speed = speed;
 	}
 	public String getMileage() {
 		return Mileage;

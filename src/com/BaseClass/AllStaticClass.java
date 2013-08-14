@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import com.wise.zaitu.R;
 
+import android.R.integer;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -74,13 +75,13 @@ public class AllStaticClass {
 		}
 		
 	}
-	public static BitmapDrawable DrawableBimpMap(Context context ,String GPSFlag , String Alarm,String Rotate,String BoardTime,boolean isNeedOff){
+	public static BitmapDrawable DrawableBimpMap(Context context ,String GPSFlag , String Alarm,String Rotate,String BoardTime,int speed,boolean isNeedOff){
 		Bitmap car_alert = BitmapFactory.decodeResource(context.getResources(),R.drawable.car_alert);
 		Bitmap car_bad = BitmapFactory.decodeResource(context.getResources(),R.drawable.car_bad);
 		Bitmap car_off = BitmapFactory.decodeResource(context.getResources(),R.drawable.car_off);
 		Bitmap car_on = BitmapFactory.decodeResource(context.getResources(),R.drawable.car_on);
 		Bitmap car_out = BitmapFactory.decodeResource(context.getResources(),R.drawable.car_out);
-		String str = context.getString(R.string.accon);
+		//String str = context.getString(R.string.accon);
 		String[] alarm = context.getResources().getStringArray(R.array.alarm);
 		int gpsFlag = Integer.valueOf(GPSFlag);
 		int rotate = Integer.valueOf(Rotate);
@@ -93,7 +94,7 @@ public class AllStaticClass {
 			return DrawableBimp(rotate, car_bad);
 		}else if(SearchAlarm(Alarm, alarm)){
 			return DrawableBimp(rotate, car_alert);
-		}else if(SearchAccon(Alarm, str)){
+		}else if(speed > 10){
 			return DrawableBimp(rotate, car_on);
 		}else{
 			return DrawableBimp(rotate, car_off);
@@ -213,7 +214,7 @@ public class AllStaticClass {
 	
 	public static String geocodeAddr(Context context, String latitude, String longitude) { 
 		String addr = ""; 
-		String url = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+ latitude +"," + longitude + "&sensor=true";
+		String url = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+ latitude +"," + longitude + "&language=" + context.getString(R.string.languag) +"&sensor=true";
 		System.out.println(url);
 		URL myURL = null; 
 		URLConnection httpsConn = null; 

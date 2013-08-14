@@ -2,6 +2,9 @@ package com.BaseClass;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android.R.integer;
+
 import com.wise.util.CarInfo;
 import com.wise.util.TotalData;
 
@@ -55,11 +58,15 @@ public class ResolveData {
 
 			String speed = strCars[4].substring(6);
 			if (speed.equals("anyType{}")) {
-				carInfo.setSpeed("");
+				carInfo.setSpeed(0);
 			} else {
-				carInfo.setSpeed(speed);
+				try {
+					carInfo.setSpeed(Integer.valueOf(speed));
+				} catch (Exception e) {
+					e.printStackTrace();
+					carInfo.setSpeed(0);
+				}
 			}
-
 			String mileage = strCars[5].substring(8);
 			if (mileage.equals("anyType{}")) {
 				carInfo.setMileage("");
@@ -118,7 +125,7 @@ public class ResolveData {
 				carInfo.setBoardTime(BoardTime.replace("T", " "));
 			}
 			String StaticTime = strCars[17].substring(11);
-			if (BoardTime.equals("anyType{}")) {
+			if (StaticTime.equals("anyType{}")) {
 				carInfo.setStaticTime("");
 			} else {
 				carInfo.setStaticTime(StaticTime);
@@ -165,9 +172,14 @@ public class ResolveData {
 
 			String speed = strCars[4].substring(6);
 			if (speed.equals("anyType{}")) {
-				carInfo.setSpeed("");
+				carInfo.setSpeed(0);
 			} else {
-				carInfo.setSpeed(speed);
+				try {
+					carInfo.setSpeed(Integer.valueOf(speed));
+				} catch (Exception e) {
+					e.printStackTrace();
+					carInfo.setSpeed(0);
+				}
 			}
 
 			String mileage = strCars[5].substring(8);
@@ -212,6 +224,12 @@ public class ResolveData {
 				carInfo.setBoardTime("");
 			} else {
 				carInfo.setBoardTime(BoardTime.replace("T", " "));
+			}
+			String StaticTime = strCars[17].substring(11);
+			if (StaticTime.equals("anyType{}")) {
+				carInfo.setStaticTime("");
+			} else {
+				carInfo.setStaticTime(StaticTime);
 			}
 			carPath.add(carInfo);
 			System.out.println(carInfo.toString());

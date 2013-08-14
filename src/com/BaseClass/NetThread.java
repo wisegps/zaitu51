@@ -480,7 +480,7 @@ public class NetThread {
 				 HttpResponse httpResponse = client.execute(httpPost);
 				 if(httpResponse.getStatusLine().getStatusCode() == 200){
 					 String strResult = EntityUtils.toString(httpResponse.getEntity());
-					 System.out.println(strResult);
+					 //System.out.println("ÉÏ´«·µ»Ø="+strResult);
 				 }else{
 					 Log.d("NetThread", "×´Ì¬" +httpResponse.getStatusLine().getStatusCode());
 				 }

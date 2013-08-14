@@ -17,6 +17,8 @@ import com.BaseClass.MyOverlay;
 import com.BaseClass.NetThread;
 import com.BaseClass.PoiOverlay;
 import com.BaseClass.ResolveData;
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
@@ -169,6 +171,8 @@ public class AVTActivity extends MapActivity implements OnGestureListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        AdView adView = (AdView)this.findViewById(R.id.adView);
+        adView.loadAd(new AdRequest());
         //手势控件
         gestureScanner = new GestureDetector(this);
 		flipper = (ViewFlipper) this.findViewById(R.id.viewFlipper);
@@ -554,7 +558,7 @@ public class AVTActivity extends MapActivity implements OnGestureListener{
 		String GPSFlag = carPath.get(index).getGPSFlag();
 		String MSTStatus = carPath.get(index).getCar_status();
 		String Direct = carPath.get(index).getDirect();
-		Drawable drawable = AllStaticClass.DrawableBimpMap(AVTActivity.this, GPSFlag, MSTStatus, Direct,carPath.get(index).getBoardTime(),false);
+		Drawable drawable = AllStaticClass.DrawableBimpMap(AVTActivity.this, GPSFlag, MSTStatus, Direct,carPath.get(index).getBoardTime(),carPath.get(index).getSpeed(),false);
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		LocusOverlay itemOverLay = new LocusOverlay(drawable); // 实例化画图
 		OverlayItem overLayItem = new OverlayItem(stopPoint, "123","123"); // 绑定点击事件
@@ -577,7 +581,7 @@ public class AVTActivity extends MapActivity implements OnGestureListener{
 		TextView tv_car_Speed = (TextView) popView.findViewById(R.id.pop_car_Speed);
 		TextView tv_car_GpsTime = (TextView) popView.findViewById(R.id.pop_car_GpsTime);
 		TextView pop_car_staticTime = (TextView) popView.findViewById(R.id.pop_car_staticTime);
-		//TextView pop_car_Temp = (TextView) popView.findViewById(R.id.pop_car_Temp);
+		pop_car_staticTime.setVisibility(View.GONE);
 		
 		TextView bt_menu_car = (TextView)popView.findViewById(R.id.bt_menu_car);
 		bt_menu_car.setVisibility(View.GONE);
@@ -591,7 +595,7 @@ public class AVTActivity extends MapActivity implements OnGestureListener{
 		bt_monitor_locus.getPaint().setAntiAlias(true);
 		bt_monitor_locus.setOnClickListener(OCL);
 		
-		String Speed = carPath.get(i).getSpeed();
+		String Speed = ""+carPath.get(i).getSpeed();
 		String RegNum = carPath.get(i).getRegNum();
 		String MSTStatus = carPath.get(i).getCar_status();
 		String mileage = carPath.get(i).getMileage();
@@ -599,10 +603,10 @@ public class AVTActivity extends MapActivity implements OnGestureListener{
 		
 		tv_car_id.setText(RegNum);
 		tv_car_MSTStatus.setText(MSTStatus + " ");
-		tv_car_Mileage.setText(mileage + " km");
-		tv_car_Speed.setText(Speed + " km/h");
+		tv_car_Mileage.setText(getString(R.string.car_mileage) + mileage + " km");
+		tv_car_Speed.setText(getString(R.string.car_speed) + Speed + " km/h");
 		tv_car_GpsTime.setText(gps_time);
-		pop_car_staticTime.setText(carPath.get(i).getStaticTime());
+		pop_car_staticTime.setText(getString(R.string.car_stop) + carPath.get(i).getStaticTime());
 		//pop_car_Temp.setText(carPath.get(i).getTemp());
 
 		mMapView.updateViewLayout(popView, geoLP);
@@ -673,7 +677,7 @@ public class AVTActivity extends MapActivity implements OnGestureListener{
 		for(int i = 0 ; i < carinfos.size() ; i++){
 			String Lat = carinfos.get(i).getLat();
 			String Lon = carinfos.get(i).getLon();
-			String Speed = carinfos.get(i).getSpeed();
+			String Speed = ""+carinfos.get(i).getSpeed();
 			String Direct = carinfos.get(i).getDirect();
 			String RegNum = carinfos.get(i).getRegNum();
 			String GPSFlag = carinfos.get(i).getGPSFlag();
@@ -686,7 +690,7 @@ public class AVTActivity extends MapActivity implements OnGestureListener{
 			String snippet = RegNum + ",," + gps_time + ",," + MSTStatus + ",," + Speed + "km/h" + ",," + Mileage + "km,," + Fuel + ",," + Temp + ",," + carinfos.get(i).getStaticTime();
 			
 			GeoPoint Point = new GeoPoint(AllStaticClass.StringToInt(Lat), AllStaticClass.StringToInt(Lon)); // 得到经纬度
-			Drawable drawable = AllStaticClass.DrawableBimpMap(AVTActivity.this, GPSFlag, MSTStatus, Direct,carinfos.get(i).getBoardTime(),true);
+			Drawable drawable = AllStaticClass.DrawableBimpMap(AVTActivity.this, GPSFlag, MSTStatus, Direct,carinfos.get(i).getBoardTime(),carinfos.get(i).getSpeed(),true);
 			int w = drawable.getIntrinsicWidth();
 			int h = drawable.getIntrinsicHeight();
 			drawable.setBounds(-w/2, -h/2, w/2, h/2);
@@ -1155,7 +1159,7 @@ public class AVTActivity extends MapActivity implements OnGestureListener{
 		bt_monitor_locus.getPaint().setAntiAlias(true);
 		bt_monitor_locus.setOnClickListener(OCL);
 		
-		String Speed = carinfos.get(i).getSpeed();
+		String Speed = ""+carinfos.get(i).getSpeed();
 		String RegNum = carinfos.get(i).getRegNum();
 		String MSTStatus = carinfos.get(i).getCar_status();
 		String mileage = carinfos.get(i).getMileage();
@@ -1163,10 +1167,10 @@ public class AVTActivity extends MapActivity implements OnGestureListener{
 		
 		tv_car_id.setText(RegNum);
 		tv_car_MSTStatus.setText(MSTStatus + " ");
-		tv_car_Mileage.setText(mileage + " km");
-		tv_car_Speed.setText(Speed + " km/h");
+		tv_car_Mileage.setText(getString(R.string.car_mileage) + mileage + " km");
+		tv_car_Speed.setText(getString(R.string.car_speed) + Speed + " km/h");
 		tv_car_GpsTime.setText(gps_time);
-		pop_car_staticTime.setText(carinfos.get(i).getStaticTime());
+		pop_car_staticTime.setText(getString(R.string.car_stop) + carinfos.get(i).getStaticTime());
 		//pop_car_Temp.setText(carinfos.get(i).getTemp());
 
 		mMapView.updateViewLayout(popView, geoLP);
@@ -1204,10 +1208,10 @@ public class AVTActivity extends MapActivity implements OnGestureListener{
 				tv_car_id.setText(str[0]);
 				tv_car_GpsTime.setText(str[1]);
 				tv_car_MSTStatus.setText(str[2]);
-				tv_car_Speed.setText(str[3]);
-				tv_car_Mileage.setText(str[4]);
+				tv_car_Speed.setText(getString(R.string.car_speed) + str[3]);
+				tv_car_Mileage.setText(getString(R.string.car_mileage) + str[4]);
 				
-				pop_car_staticTime.setText(str[7]);
+				pop_car_staticTime.setText(getString(R.string.car_stop) + str[7]);
 				//pop_car_Temp.setText(str[6]);
 
 				mMapView.updateViewLayout(popView, geoLP);
@@ -1218,8 +1222,8 @@ public class AVTActivity extends MapActivity implements OnGestureListener{
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(0, 1, 0, R.string.allcar_config);
-		menu.add(0, 2, 0, R.string.bt_updatePwd);
-		menu.add(0, 3, 0, R.string.Proposal);
+		//menu.add(0, 2, 0, R.string.bt_updatePwd);
+		//menu.add(0, 3, 0, R.string.Proposal);
 		return super.onCreateOptionsMenu(menu);
 	}
 	
@@ -1512,10 +1516,10 @@ public class AVTActivity extends MapActivity implements OnGestureListener{
 					if(!isPause && p != null){
 						List<NameValuePair> params = new ArrayList<NameValuePair>();
 						params.add(new BasicNameValuePair("DeviceID", String.valueOf(userid)));
-						params.add(new BasicNameValuePair("Lon", String.valueOf(p.getLongitudeE6())));
-						params.add(new BasicNameValuePair("Lat", String.valueOf(p.getLatitudeE6())));
+						params.add(new BasicNameValuePair("Lon", String.valueOf((double)p.getLongitudeE6()/1000000)));
+						params.add(new BasicNameValuePair("Lat", String.valueOf((double)p.getLatitudeE6()/1000000)));
 						params.add(new BasicNameValuePair("Speed", "0"));
-						new Thread(new NetThread.postDataThread(handler, url, params, 999)).start();
+						new Thread(new NetThread.postDataThread(handler, Config.url + "/" + Config.methodUpdateServerActiveData, params, 999)).start();
 					}
 					Thread.sleep(60000);
 				} catch (InterruptedException e) {

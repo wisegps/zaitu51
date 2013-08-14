@@ -80,9 +80,7 @@ public class CarAdapter extends BaseAdapter {
 			holder.caro.setImageBitmap(car_off);
 		}
 		holder.carid.setText(items.get(position).getRegNum().toString());
-		holder.carinfo.setText(
-				changeTime(items.get(position).getGps_time()) + "   "
-				+ items.get(position).getSpeed() + " km/h");
+		holder.carinfo.setText(changeTime(items.get(position).getGps_time()) + "   "+ items.get(position).getSpeed() + " km/h");
 		holder.carstatu.setText(items.get(position).getCar_status());
 		
 		if(position == selectItem){
